@@ -1,0 +1,39 @@
+body{
+    background: linear-gradient(30deg,blue 40%,rgb(48, 3, 3) 50%);
+}
+#box{
+    width: 20%;
+    
+}
+main{
+    display: flex;
+}
+
+#mini-box{
+    width: 90%;
+    height: 100px;
+    margin: 0 auto;
+}
+
+#user{
+    background: white;
+    border-radius: 100px;
+    padding: 10px;
+    font-size: 10px;
+    cursor: pointer;
+    padding-left: 20px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.4);
+    font-family: 'Courier New', Courier, monospace;
+    
+}
+h3{
+    margin: 0px auto;
+}
+#posts-container{
+    width: 60%; 
+    height: 1000px;
+    margin-left: 10%;
+}
+#user.selected{
+    border:solid rebeccapurple 8px solid;
+}

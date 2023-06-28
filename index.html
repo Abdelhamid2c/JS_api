@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>jS_api</title>
+</head>
+<body>
+    <main>
+        <div id="box">
+            <div id="mini-box" >
+                <div id="user" class="selected">
+                    <h3>abdelhamid</h3>
+                    <h3>abdelhamidchebel@gmail.com</h3>
+                </div>
+            </div>
+        </div>
+
+        <div id="posts-container">
+            <div id="posts" style="margin: 0% auto;">
+                <div id="box" style="display:contents;">
+                    <div id="mini-box">
+                        <div id="user">
+                            <h3>abdelhamid</h3>
+                            <h3>abdelhamidchebel@gmail.com</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+    <script>
+        function getAllPosts(id) {
+            let request = new XMLHttpRequest();
+            request.open('GET', 'https://jsonplaceholder.typicode.com/posts?userId='+id);
+            request.responseType = 'json'
+            request.send();
+            request.onload = function(){
+                let posts = request.response
+                document.getElementById('posts').innerHTML = ""
+                for(post of posts){
+                    let content = `
+                                    <div id="box" style="display:contents;">
+                                        <div id="mini-box">
+                                            <div id="user">
+                                                <h3>${post.title}</h3>
+                                                <h3>${post.body}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                    `
+                    console.log(post);
+                    document.getElementById('posts').innerHTML += content;
+                }
+            }
+
+        }
+        function getAllUsers() {
+            let request = new XMLHttpRequest();
+            request.open('GET', 'https://jsonplaceholder.typicode.com/users');
+            request.responseType = 'json'
+            request.send();
+            request.onload = function(){
+                let users = request.response
+                document.getElementById('mini-box').innerHTML = ""
+                for(user of users){
+                    let content = `
+                                    <div id="user" onClick = "userClicked(${user.id},this)">
+                                        <h3>${user.name}</h3>
+                                        <h3>${user.phone}</h3>
+                                    </div>
+                                
+                    `
+                    console.log(user);
+                    document.getElementById('mini-box').innerHTML += content;
+                }
+            }
+
+        }
+
+        function userClicked(id,elClicked){
+            getAllPosts(id)
+            let selectedElements = document.getElementsByClassName('selected')
+            for(element of selectedElements){
+                element.classList.remove();
+            }
+            elClicked.classList.add('selected');
+        }
+        getAllUsers()
+    </script>
+</html>
