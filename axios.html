@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <title>Axios</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const people = [
+  { name: "John", age: 30 },
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 35 },
+    ];
+
+    function change(tab,condition){
+        return tab.filter(function(obj){
+            return condition(obj) ;
+        })
+    }
+
+    const sup= change(people,function(p){
+        return p.age >= 30;
+    })
+
+    const inf = change(people,function(p){
+        return p.age < 30;
+    })
+
+    console.log(sup)
+    console.log(inf)
+
+    function sumNumbers(numbers) {
+  return numbers.reduce(
+    (accumulator, currentNumber) => {
+    return accumulator * currentNumber;
+  }, 1);
+}
+
+const numbers = [1, 2, 3, 4, 5];
+const sum = sumNumbers(numbers);
+
+console.log(sum);
+</script>
+</html>

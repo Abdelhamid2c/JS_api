@@ -38,7 +38,7 @@ function getAllUsers() {
                                     <div id="box" style="display:contents;">
                                         <div id="mini-box">
                                             <div id="user">
-                                                <h3>${post.title}</h3>
+                                                <h2>${post.title}</h2>
                                                 <h3>${post.body}</h3>
                                             </div>
                                         </div>
