@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>axios</title>
@@ -35,6 +33,62 @@
     </main>
 </body>
     <script >
-                 
+        function getAllUsers(){
+            axios.get('https://jsonplaceholder.typicode.com/users')
+            .then(function (response) {
+                return response.data
+            })
+            .then(function (users) {
+                document.getElementById('mini-box').innerHTML = ""
+                for(user of users){
+                    let content = `
+                                    <div id="user" onClick = "userClicked(${user.id},this)">
+                                        <h3>${user.name}</h3>
+                                        <h3>${user.phone}</h3>
+                                    </div>
+                                
+                    `
+                    console.log(user);
+                    document.getElementById('mini-box').innerHTML += content;
+                 }
+            })
+        }
+        
+        function getAllPosts(id){
+            axios.get('https://jsonplaceholder.typicode.com/posts',{
+                params : {
+                    userId : id
+                }
+            }).then(function (response) {
+                return response.data
+            }).then(posts => 
+            {
+                document.getElementById('posts').innerHTML = ""
+                for(post of posts){
+                    let content = `
+                                    <div id="box" style="display:contents;">
+                                        <div id="mini-box">
+                                            <div id="user">
+                                                <h2>${post.title}</h2>
+                                                <h3>${post.body}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                    `
+                    console.log(post);
+                    document.getElementById('posts').innerHTML += content;
+            }
+        })
+        }
+
+        function userClicked(id,elClicked){
+            getAllPosts(id)
+            let selectedElements = document.getElementsByClassName('selected')
+            for(element of selectedElements){
+                element.classList.remove();
+            }
+            elClicked.classList.add('selected');
+        }
+        getAllUsers()
     </script>
 </html>

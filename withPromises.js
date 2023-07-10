@@ -20,7 +20,7 @@ function getAllUsers() {
                     `
                     console.log(user);
                     document.getElementById('mini-box').innerHTML += content;
-            }
+                 }
             resolve()
         })
     })
